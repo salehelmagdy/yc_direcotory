@@ -7,15 +7,16 @@ import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({
   searchParams,
-}: Promise<{ query?: string }>) {
+}: {
+  searchParams: Promise<{ query?: string }>;
+}) {
   const query = (await searchParams).query;
 
   const params = { search: query || null };
 
-  // const session = await auth();
+  const session = await auth();
 
-  // console.log(session);
-  // console.log(session?.id);
+  console.log(session?.id);
 
   const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
